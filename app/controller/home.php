@@ -1,5 +1,4 @@
 <?php
-//teste
 	### If is a post from ajax...
 	if (isset($_POST["ajax"])) {	
 		###############################

@@ -1,6 +1,6 @@
 lidiun
 ======
 
-Lidiun Framework is a single framework to make web sites
+Lidiun Framework é um framework diferente de tudo que você já viu!b sites
 
-To read documentation: www.lidiun.com 
+Leia a documentação emn: www.lidiun.com.br/documentaion/ 

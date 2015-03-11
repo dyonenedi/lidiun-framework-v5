@@ -17,6 +17,7 @@
 	class Language
 	{
 		private static $_language;
+		private static $_dictionary;
 
 		public static function init() {
 			$language = Conf::$_conf['preset']['language_default'];
@@ -25,9 +26,7 @@
 				$language = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 				if (is_array($language) && !empty($language[0])) {
 					$language = strtolower(trim($language[0]));
-					if (file_exists(Path::$_path['translation'].$language.'.php')) {
-						self::$_language = $language;
-					} else {
+					if (!file_exists(Path::$_path['translation'].$language.'.php')) {
 						$language = Conf::$_conf['preset']['language_default'];
 					}
 				}
@@ -43,6 +42,7 @@
 		public static function setLanguage($language) {
 			if (file_exists(Path::$_path['translation'].$language.'.php')) {
 				self::$_language = $language;
+				self::$_dictionary = require_once(Path::$_path['translation'].self::$_language.'.php');
 			} else {
 				throw new \Exception('Language to your application do not exists in translation file: ' . Path::$_path['translation'].$language.'.php');
 			}
@@ -54,12 +54,12 @@
 
 		public static function translation($content=null) {
 			if (isset($content)) {
-				$dictionary = include_once(Path::$_path['translation'].self::$_language.'.php');
-				if (!is_array($dictionary)) {
+				
+				if (!is_array(self::$_dictionary)) {
 					throw new \Exception('Translator file must be an array returned in: ' . Path::$_path['translation'].self::$_language.'.php');
 				}
-				
-				foreach ($dictionary as $tag => $translation) {
+
+				foreach (self::$_dictionary as $tag => $translation) {
 					$content = str_replace('<%'.$tag.'%>', $translation, $content);
 				}
 

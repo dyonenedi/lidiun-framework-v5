@@ -82,7 +82,7 @@
 		* Execute query
 		*
 		*/
-		static public function query($_sql,$return='boolean') {
+		static public function query($_sql, $return='boolean') {
 			if (empty(self::$_con)) {
 				self::connect();
 			}
@@ -101,22 +101,22 @@
 				
 				if ($return == 'boolean') {
 					return true;
-				} else if (self::$_result->num_rows) {
+				} else if ($numRows = self::$_result->num_rows) {
 					if ($return == 'array') {
 						self::$_data = array();
-						$j = 0;
 						while ($row = self::$_result->fetch_assoc()) {
 							self::$_data[] = $row;
 						}
 						return self::$_data;
 					} else if($return == 'object') {
+						self::$_data = array();
 						while($row = self::$_result->fetch_object()) {
 							self::$_data[] = $row;
 						}
 
 						return self::$_data;
 					} else if('nun_rows') {
-						return true;
+						return $numRows;
 					} else {
 						return true;
 					}
@@ -199,5 +199,13 @@
 		*/
 		static public function getErrorMessage() {
 			return self::$_errorMessage;
+		}
+
+		/**
+		* Return mysql query
+		*
+		*/
+		static public function getQuery() {
+			return self::$_sql;
 		}
 	}

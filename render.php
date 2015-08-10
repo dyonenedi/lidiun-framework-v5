@@ -146,7 +146,7 @@
 						} else if (is_numeric($value)) {
 							self::$_reply[$key] = $value;
 						} else {
-							self::$_reply[$key] = Language::translation($value);
+							self::$_reply[$key] = ($value) ? Language::translation($value) : $value;
 						}
 					}
 				} else {

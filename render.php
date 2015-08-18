@@ -168,7 +168,6 @@
 				echo json_encode(self::$_reply);
 			} else if (self::$_mobile) {
 				header('Content-Type: application/json; charset=UTF-8');
-				header("Access-Control-Allow-Credentials: false");
 				header('Access-Control-Allow-Methods: GET, POST');
 				header('Access-Control-Allow-Headers: *');
 				header('Access-Control-Allow-Origin: *');

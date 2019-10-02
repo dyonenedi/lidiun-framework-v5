@@ -12,7 +12,7 @@
 	*
 	**********************************************************/
 	
-	namespace Lidiun;
+	namespace Lidiun_Framework_v5;
 	
 	class Conf
 	{
@@ -68,13 +68,16 @@
 
 			// Start session
 			session_start();
-			
-			session_set_cookie_params( 
-			    self::$_conf['preset']['cookie_lifetime'], 
-			    self::$_conf['preset']['cookie_path'], 
-			    '.'.self::$_conf['preset']['domain'], 
-			    self::$_conf['preset']["cookie_secure"], 
-			    self::$_conf['preset']["cookie_httponly"]
-			);
+			if (isset($_SESSION)) {
+				setcookie(session_name(), session_id(), time() + self::$_conf['preset']['cookie_lifetime']);
+			} else {
+				session_set_cookie_params( 
+				    self::$_conf['preset']['cookie_lifetime'], 
+				    self::$_conf['preset']['cookie_path'], 
+				    '.'.self::$_conf['preset']['domain'], 
+				    self::$_conf['preset']["cookie_secure"], 
+				    self::$_conf['preset']["cookie_httponly"]
+				);
+			}
 		}
 	}

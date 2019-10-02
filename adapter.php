@@ -13,8 +13,8 @@
 	*
 	**********************************************************/
 
-	use Lidiun\Autoload;
-	use Lidiun\System;
+	use Lidiun_Framework_v5\Autoload;
+	use Lidiun_Framework_v5\System;
 
 	try {
 		#######################################################################################
@@ -39,11 +39,11 @@
 		############################## Include Autoload and System ############################
 		#######################################################################################
 
-		if (!include_once('../../lidiun/autoload.php')) {
+		if (!include_once('../../lidiun_framework_v5/autoload.php')) {
 			throw new \Exception('I can\'t find "autoload.php" file in: '.__FILE__.' on line: '.__LINE__);
 		}
 
-		if (!include_once('../../lidiun/system.php')) {
+		if (!include_once('../../lidiun_framework_v5/system.php')) {
 			throw new \Exception('I can\'t find "system.php" file in: '.__FILE__.' on line: '.__LINE__);
 		}
 

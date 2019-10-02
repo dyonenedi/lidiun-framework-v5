@@ -12,7 +12,7 @@
 	*
 	**********************************************************/
 	
-	namespace Lidiun;
+	namespace Lidiun_Framework_v5;
 	
 	class Language
 	{
